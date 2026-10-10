@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/generate", methods=["POST"])
 def generate():
     try:
-        api_key = os.environ.get("GROQ_API_KEY")
+        api_key = os.environ.get("OPENROUTER_API_KEY")
         if not api_key:
             return jsonify({"error": "API key missing"}), 500
 
@@ -18,7 +18,7 @@ def generate():
             return jsonify({"error": "missing prompt"}), 400
 
         body = json.dumps({
-            "model": "openai/gpt-oss-120b",
+            "model": "google/gemini-2.0-flash-exp:free",
             "messages": [
                 {
                     "role": "user",
@@ -28,11 +28,13 @@ def generate():
         }).encode("utf-8")
 
         req = urllib.request.Request(
-            "https://api.groq.com/openai/v1/chat/completions",
+            "https://openrouter.ai/api/v1/chat/completions",
             data=body,
             headers={
                 "Authorization": "Bearer " + api_key,
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://roblox.com",
+                "X-Title": "RV HUB"
             },
             method="POST"
         )
