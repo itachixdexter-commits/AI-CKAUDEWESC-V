@@ -18,7 +18,7 @@ def generate():
             return jsonify({"error": "missing prompt"}), 400
 
         body = json.dumps({
-            "model": "google/gemini-2.0-flash-exp:free",
+            "model": "google/gemma-4-27b-it:free",
             "messages": [
                 {
                     "role": "user",
