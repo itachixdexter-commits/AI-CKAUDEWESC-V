@@ -18,7 +18,7 @@ def generate():
             return jsonify({"error": "missing prompt"}), 400
 
         body = json.dumps({
-            "model": "google/gemma-4-27b-it:free",
+            "model": "nvidia/nemotron-3.5-lightning:free",
             "messages": [
                 {
                     "role": "user",
@@ -32,9 +32,7 @@ def generate():
             data=body,
             headers={
                 "Authorization": "Bearer " + api_key,
-                "Content-Type": "application/json",
-                "HTTP-Referer": "https://roblox.com",
-                "X-Title": "RV HUB"
+                "Content-Type": "application/json"
             },
             method="POST"
         )
